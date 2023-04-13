@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express(); 
 import { graphqlHTTP } from "express-graphql";
-import schema from "./schema";
-import resolvers from "./resolvers";
+import schema from "./data/schema";
+import resolvers from "./data/resolvers";
 
 app.get("/", (req, res) => {
     res.send("GraphQL is quite lovely!");
