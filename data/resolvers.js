@@ -11,9 +11,23 @@ export const resolvers = {
         });
     },
     createProduct: ({ input }) => {
-        // let id = require("crypto").randomBytes(10).toString("hex");
-        // productDatabase[id] = input;
-        // return new Product(id, input);
+        const newWidget = new Widgets({
+            name: input.name, 
+            description: input.description,
+            price: input.price,
+            soldout: input.soldout,
+            inventory: input.inventory,
+            stores: input.stores,
+        });
+
+        return newWidget.save()
+        .then((savedWidget) => {
+            savedWidget.id = savedWidget._id;
+            return savedWidget;
+        })
+        .catch((err) => {
+            throw new Error(`Failed to create new widget: ${err.message}`);
+        });
     }
 }; 
 
