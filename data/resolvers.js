@@ -10,6 +10,9 @@ export const resolvers = {
             })
         });
     },
+    getAllProducts: () => {
+        return Widgets.find({})
+    },
     createProduct: ({ input }) => {
         const newWidget = new Widgets({
             name: input.name, 
