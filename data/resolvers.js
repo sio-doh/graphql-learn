@@ -3,11 +3,12 @@ import { Widgets } from "./dbConnectors";
 
 export const resolvers = {  
     getProduct: ({ id }) => {
-        return new Promise((resolve) => {
-            Widgets.findById({ _id: id}, (err, product) => {
-                if (err) reject(err)
-                else resolve(product)
-            })
+        return Widgets.findOne({ _id: id })
+        .then((product) => {
+            return product;
+        })
+        .catch((err) => {
+            throw new Error(`Failed to retrieve product: ${err.message}`);
         });
     },
     getAllProducts: () => {
