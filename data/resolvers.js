@@ -28,7 +28,16 @@ export const resolvers = {
         .catch((err) => {
             throw new Error(`Failed to create new widget: ${err.message}`);
         });
-    }
+    },
+    updateProduct: ({ input }) => {
+        return Widgets.findByIdAndUpdate({ _id: input.id}, input, { new: true })
+        .then((widget) => {
+            return widget;
+        })
+        .catch((err) => {
+            throw new Error(`Failed to update widget: ${err.message}`);
+        });
+    }    
 }; 
 
 export default resolvers;
