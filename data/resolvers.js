@@ -37,6 +37,15 @@ export const resolvers = {
         .catch((err) => {
             throw new Error(`Failed to update widget: ${err.message}`);
         });
+    }, 
+    deleteProduct: ({ id }) => {
+        return Widgets.deleteOne({ _id: id })
+        .then(() => {
+            return "Successfully deleted widget";
+        })
+        .catch((err) => {
+            throw new Error(`Failed to delete widget: ${err.message}`)
+        });
     }    
 }; 
 
